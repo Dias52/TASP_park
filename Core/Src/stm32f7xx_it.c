@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -198,7 +198,68 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f7xx.s).                    */
 /******************************************************************************/
 
+/**
+  * @brief This function handles EXTI line0 interrupt.
+  */
+void EXTI0_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
+
+  /* USER CODE END EXTI0_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(IV_Pin);
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(IFC_O_Pin);
+  HAL_GPIO_EXTI_IRQHandler(IFC_C_Pin);
+  HAL_GPIO_EXTI_IRQHandler(USER_BTN_Pin);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	if (GPIO_Pin == GPIO_PIN_0 && getState() == CLOSE){ //IV
+		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+		setNextState(OPEN);
+	}
+	if (GPIO_Pin == GPIO_PIN_10 && getState() == OPEN){ //IFC_O
+		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+		setNextState(HOLD);
+	}
+	if (GPIO_Pin == GPIO_PIN_11 && getState() == CLOSE){ //IFC_C
+		setNextState(IDLE);
+	}
+	if (GPIO_Pin == GPIO_PIN_13){ //BTN
+		setNextState(OPEN);
+	}
+}
 
 /* USER CODE END 1 */
 
