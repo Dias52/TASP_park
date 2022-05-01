@@ -70,6 +70,10 @@ void Error_Handler(void);
 #define IFC_C_Pin GPIO_PIN_11
 #define IFC_C_GPIO_Port GPIOB
 #define IFC_C_EXTI_IRQn EXTI15_10_IRQn
+#define RFID_Reset_Pin GPIO_PIN_14
+#define RFID_Reset_GPIO_Port GPIOD
+#define RFID_CS_Pin GPIO_PIN_15
+#define RFID_CS_GPIO_Port GPIOD
 #define IV_Pin GPIO_PIN_0
 #define IV_GPIO_Port GPIOE
 #define IV_EXTI_IRQn EXTI0_IRQn

@@ -10,6 +10,7 @@
 
 #include "gpio.h"
 #include "tim.h"
+#include "RFID.h"
 
 typedef enum ENUM_STATES{IDLE = 0, OPEN, HOLD, CLOSE} e_states;
 
