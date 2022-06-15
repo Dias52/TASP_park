@@ -57,6 +57,20 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+struct Tag tag1 = {	{'J','o','a','o',' ','D','i','a','s'},
+					{204, 191, 8, 57, 66},
+					{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF},
+					false,
+					true,
+					NULL};
+
+struct Tag tag2 = {	{'A','A','A','A',' ','A','A','A','A'},
+					{2, 2, 2, 2, 2},
+					{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF},
+					false,
+					false,
+					NULL};
+
 /* USER CODE END 0 */
 
 /**
@@ -91,7 +105,8 @@ int main(void)
   MX_TIM1_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
+  MFRC522_Init();
+  addTag(&tag1);
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -7,6 +7,7 @@
 #include"FSM.h"
 
 e_states state = CLOSE, nextState = IDLE;
+bool stateSetup = false;
 
 void proc_IDLE();
 void proc_OPEN();
@@ -27,20 +28,28 @@ e_states getState(){
 }
 
 void encodeFSM(){
-	if (nextState != state){
-		state = nextState;
-		selectState[state]();
-	}
+	if (state != nextState)
+		stateSetup = false;
+	state = nextState;
+	selectState[state]();
 }
 
 void proc_IDLE(){
-	//BTN implementado, falta o RFID
+	if (checkTagPresence() == MI_OK){
+		if (checkTagAccess() == MI_OK){
+			//writeDisplay(line, getRFIDData());
+			setNextState(OPEN);
+		}
+	}
 }
 
 void proc_OPEN(){
-	MTR_Rotation(0);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	//IFC_O implementado
+	if (stateSetup == false){
+		MTR_Rotation(0);
+		HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+		stateSetup = true;
+		//IFC_O implementado
+	}
 }
 
 void proc_HOLD(){
