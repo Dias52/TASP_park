@@ -68,7 +68,7 @@ struct Tag tag2 = {	{'A','A','A','A',' ','A','A','A','A'},
 					{2, 2, 2, 2, 2},
 					{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF},
 					false,
-					false,
+					true,
 					NULL};
 
 /* USER CODE END 0 */
@@ -101,10 +101,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_TIM2_Init();
   MX_TIM1_Init();
   MX_SPI1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim2);
   MFRC522_Init();
   addTag(&tag1);
   /* USER CODE END 2 */
@@ -164,7 +165,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
   {

@@ -249,11 +249,17 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
 		setNextState(OPEN);
 	}
+	if (GPIO_Pin == GPIO_PIN_0 && getState() == HOLD){ //IV
+			HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+			while(HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_0) == 0);
+			__HAL_TIM_SET_COUNTER(&htim2, 0);
+	}
 	if (GPIO_Pin == GPIO_PIN_10 && getState() == OPEN){ //IFC_O
 		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
 		setNextState(HOLD);
 	}
 	if (GPIO_Pin == GPIO_PIN_11 && getState() == CLOSE){ //IFC_C
+		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
 		setNextState(IDLE);
 	}
 	if (GPIO_Pin == GPIO_PIN_13){ //BTN

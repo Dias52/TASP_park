@@ -6,7 +6,7 @@
  */
 #include"FSM.h"
 
-e_states state = CLOSE, nextState = IDLE;
+e_states state = CLOSE, nextState = CLOSE;
 bool stateSetup = false;
 
 void proc_IDLE();
@@ -53,16 +53,18 @@ void proc_OPEN(){
 }
 
 void proc_HOLD(){
-	//HAL_TIM_Base_Start_IT(&htim2);
-	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-	HAL_Delay(40000);
-	nextState = CLOSE;
+	if (stateSetup == false){
+		HAL_TIM_Base_Start_IT(&htim2);
+		stateSetup = true;
+	}
 }
 
 void proc_CLOSE(){
-	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-	MTR_Rotation(0);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+	if (stateSetup == false){
+		MTR_Rotation(1);
+		HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+		stateSetup = true;
+	}
 	//IFC_C implementado e IV;
 }
 

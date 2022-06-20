@@ -5,4 +5,4 @@ FSM.c:37:6:proc_IDLE	8	static
 FSM.c:46:6:proc_OPEN	8	static
 FSM.c:55:6:proc_HOLD	8	static
 FSM.c:62:6:proc_CLOSE	8	static
-FSM.c:69:6:MTR_Rotation	16	static
+FSM.c:71:6:MTR_Rotation	16	static
