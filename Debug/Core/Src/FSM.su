@@ -1,8 +1,8 @@
-FSM.c:22:6:setNextState	16	static
-FSM.c:26:10:getState	4	static
-FSM.c:30:6:encodeFSM	8	static
-FSM.c:37:6:proc_IDLE	8	static
-FSM.c:46:6:proc_OPEN	8	static
-FSM.c:55:6:proc_HOLD	8	static
-FSM.c:62:6:proc_CLOSE	8	static
-FSM.c:71:6:MTR_Rotation	16	static
+FSM.c:24:6:setNextState	16	static
+FSM.c:28:10:getState	4	static
+FSM.c:32:6:encodeFSM	8	static
+FSM.c:39:6:proc_IDLE	8	static
+FSM.c:70:6:proc_OPEN	8	static
+FSM.c:84:6:proc_HOLD	8	static
+FSM.c:95:6:proc_CLOSE	8	static
+FSM.c:112:6:MTR_Rotation	16	static

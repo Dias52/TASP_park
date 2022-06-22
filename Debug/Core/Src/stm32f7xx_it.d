@@ -31,7 +31,7 @@ Core/Src/stm32f7xx_it.o: ../Core/Src/stm32f7xx_it.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Core/Inc/stm32f7xx_it.h ../Core/Inc/FSM.h ../Core/Inc/gpio.h \
  ../Core/Inc/main.h ../Core/Inc/tim.h ../Core/Inc/RFID.h \
- ../Core/Inc/stm32f1_rc522.h
+ ../Core/Inc/stm32f1_rc522.h ../Core/Inc/i2cdisplay.h ../Core/Inc/PARK.h
 
 ../Core/Inc/main.h:
 
@@ -108,3 +108,7 @@ Core/Src/stm32f7xx_it.o: ../Core/Src/stm32f7xx_it.c ../Core/Inc/main.h \
 ../Core/Inc/RFID.h:
 
 ../Core/Inc/stm32f1_rc522.h:
+
+../Core/Inc/i2cdisplay.h:
+
+../Core/Inc/PARK.h:

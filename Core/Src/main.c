@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
+#include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
@@ -64,8 +66,8 @@ struct Tag tag1 = {	{'J','o','a','o',' ','D','i','a','s'},
 					true,
 					NULL};
 
-struct Tag tag2 = {	{'A','A','A','A',' ','A','A','A','A'},
-					{2, 2, 2, 2, 2},
+struct Tag tag2 = {	{'C', 'A', 'T', 'C', 'H', 'A', 'U'},
+					{3, 18, 128, 21, 132},
 					{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF},
 					false,
 					true,
@@ -103,11 +105,15 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM1_Init();
   MX_SPI1_Init();
+  MX_DMA_Init();
+  MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   MFRC522_Init();
   addTag(&tag1);
+  //addTag(&tag2);
+  lcd_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

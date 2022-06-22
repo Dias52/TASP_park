@@ -22,5 +22,6 @@ uint8_t checkTagAccess();
 uint8_t authenticate(uint8_t);
 uint8_t readTag(uint8_t);
 uint8_t writeTag(uint8_t);
-
+char* readName();
+struct Tag* getTag();
 #endif /* INC_RFID_H_ */

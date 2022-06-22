@@ -94,3 +94,14 @@ uint8_t writeTag(uint8_t bAddr){
 	}
 	return MI_ERR;
 }
+
+char* readName(){
+	return &p->name;
+	/*authenticate(4);
+	MFRC522_Read(4, R);
+	return &R;*/
+}
+
+struct Tag* getTag(){
+	return p;
+}

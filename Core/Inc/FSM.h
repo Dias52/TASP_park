@@ -12,6 +12,8 @@
 #include "tim.h"
 #include "RFID.h"
 #include <stdbool.h>
+#include "i2cdisplay.h"
+#include "PARK.h"
 
 typedef enum ENUM_STATES{IDLE = 0, OPEN, HOLD, CLOSE} e_states;
 
